@@ -15,8 +15,8 @@ const download = [['Total', '502m', '(+1.2%)'], ['Android', '351m', '(+0.8%)'], 
 
 test('throws an error when slack url is not valid', t => {
 	const report = new SlackReport()
-		.withTitle('title')
-		.withMetric('dau', [['1', '2']])
+		.title('title')
+		.metric('dau', [['1', '2']])
 		.build();
 	const error = t.throws(() => {
 		report.publish('http://www.google.com');
@@ -26,35 +26,35 @@ test('throws an error when slack url is not valid', t => {
 
 test('returns basic attachement object', t => {
 	const report = new SlackReport()
-		.withTitle('Daily User Report')
-		.withMetric('DAU', dau)
+		.title('Daily User Report')
+		.metric('DAU', dau)
 		.build();
 	t.deepEqual(report.attachments, basicAtt);
 });
 
 test('returns single-column attachement object', t => {
 	const report = new SlackReport()
-		.withTitle('Daily User Report')
-		.withMetric('DAU', dau)
-		.withMetric('MAU', mau)
-		.withMetric('NEW', newUsers, false)
+		.title('Daily User Report')
+		.metric('DAU', dau)
+		.metric('MAU', mau)
+		.metric('NEW', newUsers, false)
 		.build();
 	t.deepEqual(report.attachments, singleColumnAtt);
 });
 
 test('returns full attachement object', t => {
 	const report = new SlackReport()
-		.withColor(Color.GOOD)
-		.withIcon('https://author.icon.png')
-		.withCategory('Alarmy')
-		.withTitle('Daily User Report', 'https://title.link')
-		.withMetric('DAU', dau)
-		.withMetric('MAU', mau)
-		.withMetric('NEW', newUsers)
-		.withMetric('DWNLD', download)
-		.withDescription('Description: this is a sample report made by Slack Report.')
-		.withPublisher('Zeppelin', 'https://footer.icon.png')
-		.withPublishTime(1500000000000)
+		.color(Color.GOOD)
+		.icon('https://author.icon.png')
+		.category('Alarmy')
+		.title('Daily User Report', 'https://title.link')
+		.metric('DAU', dau)
+		.metric('MAU', mau)
+		.metric('NEW', newUsers)
+		.metric('DWNLD', download)
+		.description('Description: this is a sample report made by Slack Report.')
+		.publisher('Zeppelin', 'https://footer.icon.png')
+		.publishTime(1500000000000)
 		.build();
 	t.deepEqual(report.attachments, fullAtt);
 });
