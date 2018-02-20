@@ -1,0 +1,17 @@
+{
+	"attachments": [
+		{
+			"mrkdwn_in": [
+				"fields"
+			],
+			"title": "Daily User Report",
+			"fields": [
+				{
+                    "title": "DAU",
+                    "value": "Total\t10.2m\t(+2.0%)\nAndroid\t8.12m\t(+1.8%)\niOS\t2.13m\t(+2.2%)",
+                    "short": true
+                }
+			]
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"attachments": [
+		{
+			"mrkdwn_in": [
+				"fields"
+			],
+			"title": "Daily User Report",
+			"fields": [
+                {
+                    "title": "DAU",
+                    "value": "Total\t10.2m\t(+2.0%)\nAndroid\t8.12m\t(+1.8%)\niOS\t2.13m\t(+2.2%)",
+                    "short": true
+                },
+                {
+                    "title": "MAU",
+                    "value": "Total\t50.3m\t(+1.2%)\nAndroid\t38.2m\t(+0.8%)\niOS\t12.1m\t(+0.4%)",
+                    "short": true
+                },
+                {
+                    "title": "NEW",
+                    "value": "Total\t21.2k\t(+4.2%)\nAndroid\t10.1k\t(+3.8%)\niOS\t11.1k\t(+1.4%)",
+                    "short": false
+				}
+            ]
+		}
+	]
+}
