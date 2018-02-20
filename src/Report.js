@@ -12,13 +12,13 @@ class Report {
 		return axios({
 			url,
 			method: 'POST',
-			data: this.attachments
+			data: this._attachments
 		});
 	}
 
 	preview() {
 		const baseUrl = 'https://api.slack.com/api_docs_message_builder.php';
-		const stringifiedAtt = JSON.stringify(this.attachments);
+		const stringifiedAtt = JSON.stringify(this._attachments);
 		const previewUrl = `${baseUrl}?msg=${encodeURIComponent(stringifiedAtt)}`;
 		console.log(previewUrl);
 	}
@@ -27,35 +27,35 @@ class Report {
 	constructor(builder) {
 		const attachment = {
 			mrkdwn_in: ['fields'],
-			title: builder.title,
-			fields: builder.metrics
+			title: builder._title,
+			fields: builder._metrics
 		};
-		if (builder.titleLink !== undefined) {
-			attachment.title_link = builder.titleLink;
+		if (builder._titleLink !== undefined) {
+			attachment.title_link = builder._titleLink;
 		}
-		if (builder.color !== undefined) {
-			attachment.color = builder.color;
+		if (builder._color !== undefined) {
+			attachment.color = builder._color;
 		}
-		if (builder.icon !== undefined) {
-			attachment.author_icon = builder.icon;
+		if (builder._icon !== undefined) {
+			attachment.author_icon = builder._icon;
 		}
-		if (builder.category !== undefined) {
-			attachment.author_name = builder.category;
+		if (builder._category !== undefined) {
+			attachment.author_name = builder._category;
 		}
-		if (builder.description !== undefined) {
+		if (builder._description !== undefined) {
 			attachment.fields.push({
-				value: builder.description,
+				value: builder._description,
 				short: false
 			});
 		}
-		if (builder.publisher !== undefined) {
-			attachment.footer = builder.publisher;
+		if (builder._publisher !== undefined) {
+			attachment.footer = builder._publisher;
 		}
-		if (builder.publisherLink !== undefined) {
-			attachment.footer_icon = builder.publisherLink;
+		if (builder._publisherLink !== undefined) {
+			attachment.footer_icon = builder._publisherLink;
 		}
-		if (builder.publishTime !== undefined) {
-			attachment.ts = builder.publishTime;
+		if (builder._publishTime !== undefined) {
+			attachment.ts = builder._publishTime;
 		}
 
 		this.attachments = {

@@ -20,21 +20,21 @@ npm install slack-report --save
 ## Usage Example
 
 ### Builder
-You can set up the report by using method chain. You should call `withTitle` and `withMetric` methods at least once. Other fields are optional. Don't forget to call the `build` method at the end of the chain.
+You can set up the report by using method chain. You should call `title` and `metric` methods at least once. Other fields are optional. Don't forget to call the `build` method at the end of the chain.
 ```js
 const SlackReport = require('slack-report');
 
 const report = new SlackReport()
-	.withIcon(reportIcon)
-	.withCategory('Alarmy')
-	.withTitle('Daily User Report', reportLink)
-	.withMetric('DAU', dau)
-	.withMetric('MAU', mau)
-	.withMetric('NEW', newUsers)
-	.withMetric('DWNLD', download)
-	.withDescription('Description: This is a sample report made by Slack Report.')
-	.withPublisher('Zeppelin', publisherIcon)
-	.withPublishTime(Date.now())
+	.icon(reportIcon)
+	.category('Alarmy')
+	.title('Daily User Report', reportLink)
+	.metric('DAU', dau)
+	.metric('MAU', mau)
+	.metric('NEW', newUsers)
+	.metric('DWNLD', download)
+	.description('Description: This is a sample report made by Slack Report.')
+	.publisher('Zeppelin', publisherIcon)
+	.publishTime(Date.now())
 	.build();
 ```
 

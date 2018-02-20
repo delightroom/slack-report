@@ -17,51 +17,51 @@ class ReportBuilder {
 		};
 	}
 
-	withColor(color) {
+	color(color) {
 		if (typeof color !== 'string') {
-			throw new TypeError('withColor only allows string parameter.');
+			throw new TypeError('color only allows string parameter.');
 		}
 		const colors = Object.values(ReportBuilder.Color);
 		if (colors.indexOf(color) === -1 && !re.hexCode.test(color)) {
-			throw new TypeError(`withColor only allows hex code color or the option provided by ReportBuilder.Color.`);
+			throw new TypeError(`color only allows hex code color or the option provided by ReportBuilder.Color.`);
 		}
-		this.color = color;
+		this._color = color;
 		return this;
 	}
 
-	withIcon(icon) {
+	icon(icon) {
 		if (!re.url.test(icon)) {
-			throw new TypeError('withIcon only allows url which starts with http or https.');
+			throw new TypeError('icon only allows url which starts with http or https.');
 		}
-		this.icon = icon;
+		this._icon = icon;
 		return this;
 	}
 
-	withCategory(category) {
-		this.category = `${category}`;
+	category(category) {
+		this._category = `${category}`;
 		return this;
 	}
 
-	withTitle(title, titleLink) {
-		this.title = `${title}`;
+	title(title, titleLink) {
+		this._title = `${title}`;
 		if (titleLink !== undefined && !re.url.test(titleLink)) {
 			throw new TypeError('titleLink should be a url string.');
 		}
-		this.titleLink = titleLink;
+		this._titleLink = titleLink;
 		return this;
 	}
 
-	withMetric(name, data, short = true) {
-		if (this.metrics === undefined) {
-			this.metrics = [];
+	metric(name, data, short = true) {
+		if (this._metrics === undefined) {
+			this._metrics = [];
 		}
 		if (!isTwoDimensionalArray(data)) {
-			throw new TypeError('data parameter for withMetric should be a two dimensional array.');
+			throw new TypeError('data parameter for metric should be a two dimensional array.');
 		}
 		if (typeof short !== 'boolean') {
 			throw new TypeError('The short parameter should be a boolean type.');
 		}
-		this.metrics.push({
+		this._metrics.push({
 			title: `${name}`,
 			value: valueString(data),
 			short
@@ -69,33 +69,33 @@ class ReportBuilder {
 		return this;
 	}
 
-	withDescription(description) {
-		this.description = '```' + description + '```';
+	description(description) {
+		this._description = '```' + description + '```';
 		return this;
 	}
 
-	withPublisher(publisher, publisherLink) {
-		this.publisher = `${publisher}`;
+	publisher(publisher, publisherLink) {
+		this._publisher = `${publisher}`;
 		if (publisherLink !== undefined && !re.url.test(publisherLink)) {
 			throw new TypeError('publisherLink should be a url string.');
 		}
-		this.publisherLink = publisherLink;
+		this._publisherLink = publisherLink;
 		return this;
 	}
 
-	withPublishTime(publishTime) {
+	publishTime(publishTime) {
 		if (!re.timestamp.test(publishTime)) {
 			throw new TypeError('publishTime should be a 13-digit timestamp.');
 		}
-		this.publishTime = Math.floor(publishTime / 1000);
+		this._publishTime = Math.floor(publishTime / 1000);
 		return this;
 	}
 
 	build() {
-		if (this.title === undefined) {
+		if (this._title === undefined) {
 			throw new ReferenceError('The title should be defined.');
 		}
-		if (this.metrics === undefined) {
+		if (this._metrics === undefined) {
 			throw new ReferenceError('The metrics should be defined.');
 		}
 		return new Report(this);
