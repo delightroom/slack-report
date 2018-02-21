@@ -58,7 +58,7 @@ class Report {
 			attachment.ts = builder._publishTime;
 		}
 
-		this.attachments = {
+		this._attachments = {
 			attachments: [attachment]
 		};
 	}
