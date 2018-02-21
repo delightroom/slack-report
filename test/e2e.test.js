@@ -29,7 +29,7 @@ test('returns basic attachement object', t => {
 		.title('Daily User Report')
 		.metric('DAU', dau)
 		.build();
-	t.deepEqual(report.attachments, basicAtt);
+	t.deepEqual(report._attachments, basicAtt);
 });
 
 test('returns single-column attachement object', t => {
@@ -39,7 +39,7 @@ test('returns single-column attachement object', t => {
 		.metric('MAU', mau)
 		.metric('NEW', newUsers, false)
 		.build();
-	t.deepEqual(report.attachments, singleColumnAtt);
+	t.deepEqual(report._attachments, singleColumnAtt);
 });
 
 test('returns full attachement object', t => {
@@ -56,5 +56,5 @@ test('returns full attachement object', t => {
 		.publisher('Zeppelin', 'https://footer.icon.png')
 		.publishTime(1500000000000)
 		.build();
-	t.deepEqual(report.attachments, fullAtt);
+	t.deepEqual(report._attachments, fullAtt);
 });
