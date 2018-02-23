@@ -7,10 +7,10 @@
 			"title": "Daily User Report",
 			"fields": [
 				{
-                    "title": "DAU",
-                    "value": "Total\t10.2m\t(+2.0%)\nAndroid\t8.12m\t(+1.8%)\niOS\t2.13m\t(+2.2%)",
-                    "short": true
-                }
+					"title": "DAU",
+					"value": "```─────────┬───────┬─────────\n Total   │ 10.2m │ (+2.0%) \n─────────┼───────┼─────────\n Android │ 8.12m │ (+1.8%) \n─────────┼───────┼─────────\n iOS     │ 2.13m │ (+2.2%) \n─────────┴───────┴─────────\n```",
+					"short": true
+				}
 			]
 		}
 	]
