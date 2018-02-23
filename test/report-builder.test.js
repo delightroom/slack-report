@@ -3,7 +3,7 @@
 const test = require('ava').test;
 const ReportBuilder = require('../src/ReportBuilder');
 const Report = require('../src/Report');
-const {valueString} = require('../src/util');
+const {formatString} = require('../src/util');
 
 const Color = ReportBuilder.Color;
 
@@ -144,7 +144,7 @@ test('stores the name and data passed by metric to metrics array variable', t =>
 		.metric(name, data);
 	t.deepEqual(reportBuilder._metrics, [{
 		title: name,
-		value: valueString(data),
+		value: formatString(data),
 		short: true
 	}]);
 });
@@ -159,7 +159,7 @@ test('stores the name, data and short passed by metric to metrics array variable
 		.metric(name, data, false);
 	t.deepEqual(reportBuilder._metrics, [{
 		title: name,
-		value: valueString(data),
+		value: formatString(data),
 		short: false
 	}]);
 });
@@ -174,8 +174,8 @@ test('pushs the name and data passed by second metric call to metrics array', t 
 		.metric(name, data)
 		.metric(name, data);
 	t.deepEqual(reportBuilder._metrics, [
-		{title: name, value: valueString(data), short: true},
-		{title: name, value: valueString(data), short: true}
+		{title: name, value: formatString(data), short: true},
+		{title: name, value: formatString(data), short: true}
 	]);
 });
 

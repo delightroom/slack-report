@@ -29,7 +29,7 @@ function isTwoDimensionalArray(array) {
 	return validValueTypes;
 }
 
-function valueString(data) {
+function formatString(data) {
 	const string = data.reduce((str, row) => {
 		str = str + row.join('\t') + '\n';
 		return str;
@@ -46,6 +46,6 @@ const re = {
 
 module.exports = {
 	isTwoDimensionalArray,
-	valueString,
+	formatString,
 	re
 };

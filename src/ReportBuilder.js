@@ -1,7 +1,7 @@
 'use strict';
 
 const Report = require('./Report');
-const {isTwoDimensionalArray, valueString, re} = require('./util');
+const {isTwoDimensionalArray, formatString, re} = require('./util');
 
 class ReportBuilder {
 
@@ -63,7 +63,7 @@ class ReportBuilder {
 		}
 		this._metrics.push({
 			title: `${name}`,
-			value: valueString(data),
+			value: formatString(data),
 			short
 		});
 		return this;
