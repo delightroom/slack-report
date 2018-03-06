@@ -30,9 +30,9 @@ const report = new ReportBuilder()
   .description('This is a sample report made by Slack Report.')
   .metric(dau, {
     title: 'DAU',
-	description: 'This is a sample table.',
-	timestamp: Date.now(),
-	author: 'Delightroom'
+    description: 'This is a sample table.',
+    timestamp: Date.now(),
+    author: 'Delightroom'
   })
   .build();
 ```
