@@ -1,5 +1,8 @@
 'use strict';
 
+const {table} = require('table');
+const config = require('./config.json');
+
 function isTwoDimensionalArray(array) {
 	// Check first dimension
 	const validFirstDimension = Array.isArray(array);
@@ -29,12 +32,16 @@ function isTwoDimensionalArray(array) {
 	return validValueTypes;
 }
 
-function valueString(data) {
-	const string = data.reduce((str, row) => {
-		str = str + row.join('\t') + '\n';
-		return str;
-	}, '');
-	return string.slice(0, string.length - 1);
+function formatTable(data, title, description) {
+	let result = '';
+	if (title !== undefined) {
+		result += `${title}\n`;
+	}
+	result += table(data, config.table);
+	if (description !== undefined) {
+		result += `- ${description}`;
+	}
+	return '```' + result + '```';
 }
 
 const re = {
@@ -46,6 +53,6 @@ const re = {
 
 module.exports = {
 	isTwoDimensionalArray,
-	valueString,
+	formatTable,
 	re
 };

@@ -9,7 +9,7 @@ Slack is the most popular collaboration tool. However, when it comes to [message
 Slack Report gives you a better way to do this by making use of [message attachments](https://api.slack.com/docs/message-attachments). Especially, the API based on [Builder Pattern](https://en.wikipedia.org/wiki/Builder_pattern) allows you to write clean and easy-to-read code.
 
 
-<img width="500" alt="2018-02-20 11 23 28" src="https://user-images.githubusercontent.com/19233714/36404945-1a195488-1631-11e8-8577-8b5b39d6271e.png">
+<img width="500" src="https://user-images.githubusercontent.com/19233714/37008160-32c4f408-2124-11e8-9318-05b41ce403e1.png">
 
 ## Installation
 You can install Slack Report through npm:
@@ -20,22 +20,21 @@ npm install slack-report --save
 ## Usage Example
 
 ### Builder
-You can set up the report by using method chain. You should call `title` and `metric` methods at least once. Other fields are optional. Don't forget to call the `build` method at the end of the chain.
+You can set up the report by using method chain. You should call `title` and `metric` methods at least once. Other fields are optional. Don't forget to call the `build` method at the end of the chain. You can find [an example here](example).
 ```js
-const SlackReport = require('slack-report');
+const ReportBuilder = require('slack-report');
 
-const report = new SlackReport()
-	.icon(reportIcon)
-	.category('Alarmy')
-	.title('Daily User Report', reportLink)
-	.metric('DAU', dau)
-	.metric('MAU', mau)
-	.metric('NEW', newUsers)
-	.metric('DWNLD', download)
-	.description('Description: This is a sample report made by Slack Report.')
-	.publisher('Zeppelin', publisherIcon)
-	.publishTime(Date.now())
-	.build();
+const report = new ReportBuilder()
+  .title('Daily User Report')
+  .titleLink('https://fabric.io')
+  .description('This is a sample report made by Slack Report.')
+  .metric(dau, {
+    title: 'DAU',
+	description: 'This is a sample table.',
+	timestamp: Date.now(),
+	author: 'Delightroom'
+  })
+  .build();
 ```
 
 ### Preview

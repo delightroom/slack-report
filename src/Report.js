@@ -1,7 +1,7 @@
 'use strict';
 
 const axios = require('axios');
-const {re} = require('./util');
+const {re, formatTable} = require('./util');
 
 class Report {
 
@@ -12,55 +12,43 @@ class Report {
 		return axios({
 			url,
 			method: 'POST',
-			data: this._attachments
+			data: this._message
 		});
 	}
 
 	preview() {
 		const baseUrl = 'https://api.slack.com/api_docs_message_builder.php';
-		const stringifiedAtt = JSON.stringify(this._attachments);
+		const stringifiedAtt = JSON.stringify(this._message);
 		const previewUrl = `${baseUrl}?msg=${encodeURIComponent(stringifiedAtt)}`;
 		console.log(previewUrl);
 	}
 
 	/* eslint-disable camelcase */
 	constructor(builder) {
-		const attachment = {
-			mrkdwn_in: ['fields'],
+		const message = {
+			attachments: []
+		};
+		// Add message header
+		message.attachments.push({
 			title: builder._title,
-			fields: builder._metrics
-		};
-		if (builder._titleLink !== undefined) {
-			attachment.title_link = builder._titleLink;
-		}
-		if (builder._color !== undefined) {
-			attachment.color = builder._color;
-		}
-		if (builder._icon !== undefined) {
-			attachment.author_icon = builder._icon;
-		}
-		if (builder._category !== undefined) {
-			attachment.author_name = builder._category;
-		}
-		if (builder._description !== undefined) {
-			attachment.fields.push({
-				value: builder._description,
-				short: false
+			title_link: builder._titleLink || '',
+			text: builder._description || ''
+		});
+		// Add message body
+		builder._metrics.forEach(_ => {
+			message.attachments.push({
+				mrkdwn_in: ['fields'],
+				color: _.color || '',
+				fields: [{
+					value: formatTable(_.data, _.title, _.description),
+					short: false
+				}],
+				footer: _.author || '',
+				footer_icon: _.authorIcon || '',
+				ts: _.timestamp === undefined ? 0 : Math.floor(_.timestamp / 1000)
 			});
-		}
-		if (builder._publisher !== undefined) {
-			attachment.footer = builder._publisher;
-		}
-		if (builder._publisherLink !== undefined) {
-			attachment.footer_icon = builder._publisherLink;
-		}
-		if (builder._publishTime !== undefined) {
-			attachment.ts = builder._publishTime;
-		}
-
-		this._attachments = {
-			attachments: [attachment]
-		};
+		});
+		this._message = message;
 	}
 	/* eslint-enable camelcase */
 }

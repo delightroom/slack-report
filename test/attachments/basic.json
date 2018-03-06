@@ -1,17 +1,24 @@
 {
-	"attachments": [
+    "attachments": [
 		{
+			"title": "Daily User Report",
+			"title_link": "https://title.link",
+			"text":"This is a sample report made by Slack Report."
+		},
+        {
 			"mrkdwn_in": [
 				"fields"
 			],
-			"title": "Daily User Report",
-			"fields": [
-				{
-                    "title": "DAU",
-                    "value": "Total\t10.2m\t(+2.0%)\nAndroid\t8.12m\t(+1.8%)\niOS\t2.13m\t(+2.2%)",
-                    "short": true
+            "color": "#36a64f",
+            "fields": [
+                {
+                    "value": "```DAU\n─────────┬────────┬──────────\n Total   │ 100.2m │ ⬆︎ +2.0% \n─────────┼────────┼──────────\n Android │ 80.12m │ ⬆︎ +1.8% \n─────────┼────────┼──────────\n iOS     │ 20.13m │ ⬆︎ +2.2% \n─────────┴────────┴──────────\n- This is a sample report made by Slack Report.```",
+                    "short": false
                 }
-			]
-		}
-	]
+            ],
+            "footer": "Zeppelin",
+            "footer_icon": "https://author_icon.png",
+            "ts": 1234567890
+        }
+    ]
 }
