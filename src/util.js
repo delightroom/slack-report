@@ -32,8 +32,16 @@ function isTwoDimensionalArray(array) {
 	return validValueTypes;
 }
 
-function formatString(data) {
-	return '```' + table(data, config.table) + '```';
+function formatTable(data, title, description) {
+	let result = '';
+	if (title !== undefined) {
+		result += `${title}\n`;
+	}
+	result += table(data, config.table);
+	if (description !== undefined) {
+		result += `- ${description}`;
+	}
+	return '```' + result + '```';
 }
 
 const re = {
@@ -45,6 +53,6 @@ const re = {
 
 module.exports = {
 	isTwoDimensionalArray,
-	formatString,
+	formatTable,
 	re
 };
