@@ -1,3 +1,9 @@
+# ⚠️ Deprecated
+
+No longer maintained/used by the team.
+
+---
+
 # Slack Report
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
